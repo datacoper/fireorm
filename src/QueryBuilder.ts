@@ -24,9 +24,12 @@ export default class QueryBuilder<T extends IEntity>
     return getPath(param as Function).join('.');
   };
 
-  whereEqualTo(param: IWherePropParam<T>, val: IFirestoreVal): QueryBuilder<T> {
+  whereEqualTo(
+      prop: IWherePropParam<T>,
+      val: IFirestoreVal
+  ): QueryBuilder<T> {
     this.queries.push({
-      prop: this.extractWhereParam(param),
+      prop: this.extractWhereParam(prop),
       val,
       operator: FirestoreOperators.equal,
     });
@@ -57,7 +60,10 @@ export default class QueryBuilder<T extends IEntity>
     return this;
   }
 
-  whereLessThan(prop: IWherePropParam<T>, val: IFirestoreVal): QueryBuilder<T> {
+  whereLessThan(
+      prop: IWherePropParam<T>,
+      val: IFirestoreVal
+  ): QueryBuilder<T> {
     this.queries.push({
       prop: this.extractWhereParam(prop),
       val,
@@ -90,7 +96,9 @@ export default class QueryBuilder<T extends IEntity>
     return this;
   }
 
-  limit(limitVal: number): QueryBuilder<T> {
+  limit(
+      limitVal: number
+  ): QueryBuilder<T> {
     if (this.limitVal) {
       throw new Error(
         'A limit function cannot be called more than once in the same query expression'
@@ -100,7 +108,9 @@ export default class QueryBuilder<T extends IEntity>
     return this;
   }
 
-  orderByAscending(prop: IWherePropParam<T>): QueryBuilder<T> {
+  orderByAscending(
+      prop: IWherePropParam<T>
+  ): QueryBuilder<T> {
     if (this.orderByObj) {
       throw new Error(
         'An orderBy function cannot be called more than once in the same query expression'
@@ -115,7 +125,9 @@ export default class QueryBuilder<T extends IEntity>
     return this;
   }
 
-  orderByDescending(prop: IWherePropParam<T>): QueryBuilder<T> {
+  orderByDescending(
+      prop: IWherePropParam<T>
+  ): QueryBuilder<T> {
     if (this.orderByObj) {
       throw new Error(
         'An orderBy function cannot be called more than once in the same query expression'
