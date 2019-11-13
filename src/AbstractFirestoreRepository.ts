@@ -107,6 +107,8 @@ export abstract class AbstractFirestoreRepository<T extends IEntity>
       this.transformFirestoreTypes(doc.data() as T)
     ) as T;
 
+    entity.id = doc.id;
+
     this.initializeSubCollections(entity);
 
     return entity;
