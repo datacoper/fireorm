@@ -20,6 +20,7 @@ import {
 import { BaseRepository } from './BaseRepository';
 import QueryBuilder from './QueryBuilder';
 import { ValidationError } from 'class-validator';
+import DocumentReference = FirebaseFirestore.DocumentReference;
 
 export abstract class AbstractFirestoreRepository<T extends IEntity>
   extends BaseRepository
@@ -317,7 +318,7 @@ export abstract class AbstractFirestoreRepository<T extends IEntity>
 
   /**
    * Uses class-validator to validate an entity using decorators set in the collection class
-   * 
+   *
    * @param item class or object representing an entity
    * @returns {Promise<ValidationError[]>} An array of class-validator errors
    */
@@ -345,6 +346,8 @@ export abstract class AbstractFirestoreRepository<T extends IEntity>
       throw error;
     }
   }
+
+  abstract getReference(id: string): DocumentReference;
 
   /**
    * Takes all the queries stored by QueryBuilder and executes them.
