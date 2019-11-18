@@ -112,6 +112,10 @@ export class BaseFirestoreRepository<T extends IEntity>
     );
   }
 
+  getReference(id: string){
+    return this.firestoreColRef.doc(id);
+  }
+
   async execute(
     queries: Array<IFireOrmQueryLine>,
     limitVal?: number,
