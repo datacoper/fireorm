@@ -83,7 +83,8 @@ export class BaseFirestoreRepository<T extends IEntity>
     await this.firestoreColRef
       .doc(item.id)
       .update(this.toSerializableObject(item));
-    return item;
+
+    return this.transformFirestoreTypes(item);
   }
 
   async delete(id: string): Promise<void> {
