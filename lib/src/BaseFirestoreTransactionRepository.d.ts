@@ -13,4 +13,5 @@ export declare class TransactionRepository<T extends IEntity> extends AbstractFi
     limit(): IQueryBuilder<T>;
     orderByAscending(): IQueryBuilder<T>;
     orderByDescending(): IQueryBuilder<T>;
+    getReference(id: string): FirebaseFirestore.DocumentReference;
 }

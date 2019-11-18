@@ -3,6 +3,7 @@ import { FirestoreCollectionType, IEntity, IQueryBuilder, IWherePropParam, IFire
 import { CollectionMetadata, MetadataStorageConfig } from './MetadataStorage';
 import { BaseRepository } from './BaseRepository';
 import { ValidationError } from 'class-validator';
+import DocumentReference = FirebaseFirestore.DocumentReference;
 export declare abstract class AbstractFirestoreRepository<T extends IEntity> extends BaseRepository implements IQueryBuilder<T>, IQueryExecutor<T> {
     protected readonly subColMetadata: CollectionMetadata[];
     protected readonly colMetadata: CollectionMetadata;
@@ -157,6 +158,7 @@ export declare abstract class AbstractFirestoreRepository<T extends IEntity> ext
      * @returns {Promise<ValidationError[]>} An array of class-validator errors
      */
     validate(item: T): Promise<ValidationError[]>;
+    abstract getReference(id: string): DocumentReference;
     /**
      * Takes all the queries stored by QueryBuilder and executes them.
      * Must be implemented by base repositores
