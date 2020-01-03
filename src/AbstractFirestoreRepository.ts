@@ -21,7 +21,8 @@ import { BaseRepository } from './BaseRepository';
 import QueryBuilder from './QueryBuilder';
 import { ValidationError } from 'class-validator';
 import DocumentReference = FirebaseFirestore.DocumentReference;
-import GeoPoint = FirebaseFirestore.GeoPoint;
+import admin from "firebase-admin";
+import GeoPoint = admin.firestore.GeoPoint;
 
 export abstract class AbstractFirestoreRepository<T extends IEntity>
   extends BaseRepository
