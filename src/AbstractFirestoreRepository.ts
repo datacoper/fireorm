@@ -21,6 +21,7 @@ import { BaseRepository } from './BaseRepository';
 import QueryBuilder from './QueryBuilder';
 import { ValidationError } from 'class-validator';
 import DocumentReference = FirebaseFirestore.DocumentReference;
+import GeoPoint = FirebaseFirestore.GeoPoint;
 
 export abstract class AbstractFirestoreRepository<T extends IEntity>
   extends BaseRepository
@@ -72,7 +73,7 @@ export abstract class AbstractFirestoreRepository<T extends IEntity>
         obj[key] = obj[key].toDate();
       } else if (obj[key].constructor.name === 'GeoPoint') {
         const { latitude, longitude } = obj[key];
-        obj[key] = { latitude, longitude };
+        obj[key] = new GeoPoint( latitude, longitude );
       } else if (obj[key].constructor.name === 'DocumentReference') {
         const { id, path } = obj[key];
         obj[key] = { id, path };

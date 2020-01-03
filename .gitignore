@@ -62,3 +62,4 @@ typings/
 
 firestore.creds.json
 docs
+/yarn.lock
