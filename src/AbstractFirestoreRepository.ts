@@ -74,7 +74,8 @@ export abstract class AbstractFirestoreRepository<T extends IEntity>
         obj[key] = obj[key].toDate();
       } else if (obj[key].constructor.name === 'GeoPoint') {
         const { latitude, longitude } = obj[key];
-        obj[key] = new GeoPoint( latitude, longitude );
+        console.log(latitude, longitude);
+        obj[key] = new GeoPoint( Number.parseInt(latitude), Number.parseInt(longitude) );
       } else if (obj[key].constructor.name === 'DocumentReference') {
         const { id, path } = obj[key];
         obj[key] = { id, path };
