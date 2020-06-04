@@ -67,13 +67,13 @@ export class BaseFirestoreRepository<T extends IEntity>
 
     this.initializeSubCollections(item);
 
-    return item;
+    return this.transformFirestoreTypes(item);
   }
 
   async update(item: T): Promise<T> {
     if (this.config.validateModels) {
       const errors = await this.validate(item);
-  
+
       if (errors.length) {
         throw errors;
       }
@@ -83,6 +83,23 @@ export class BaseFirestoreRepository<T extends IEntity>
     await this.firestoreColRef
       .doc(item.id)
       .update(this.toSerializableObject(item));
+
+    return this.transformFirestoreTypes(item);
+  }
+
+  async set(item: T): Promise<T> {
+    if (this.config.validateModels) {
+      const errors = await this.validate(item);
+
+      if (errors.length) {
+        throw errors;
+      }
+    }
+
+    // TODO: handle errors
+    await this.firestoreColRef
+        .doc(item.id)
+        .set(this.toSerializableObject(item), {merge: true});
 
     return this.transformFirestoreTypes(item);
   }

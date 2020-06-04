@@ -43,7 +43,7 @@ export class TransactionRepository<T extends IEntity>
   async create(item: WithOptionalId<T>): Promise<T> {
     if (this.config.validateModels) {
       const errors = await this.validate(item as T);
-  
+
       if (errors.length) {
         throw errors;
       }
@@ -72,7 +72,7 @@ export class TransactionRepository<T extends IEntity>
   async update(item: T): Promise<T> {
     if (this.config.validateModels) {
       const errors = await this.validate(item);
-  
+
       if (errors.length) {
         throw errors;
       }
@@ -80,6 +80,21 @@ export class TransactionRepository<T extends IEntity>
 
     const query = this.collection.doc(item.id);
     await this.transaction.update(query, this.toSerializableObject(item));
+
+    return item;
+  }
+
+  async set(item: T): Promise<T> {
+    if (this.config.validateModels) {
+      const errors = await this.validate(item);
+
+      if (errors.length) {
+        throw errors;
+      }
+    }
+
+    const query = this.collection.doc(item.id);
+    await this.transaction.set(query, this.toSerializableObject(item));
 
     return item;
   }

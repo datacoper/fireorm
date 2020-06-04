@@ -10,6 +10,7 @@ export declare class BaseFirestoreRepository<T extends IEntity> extends Abstract
     findById(id: string): Promise<T>;
     create(item: T): Promise<T>;
     update(item: T): Promise<T>;
+    set(item: T): Promise<T>;
     delete(id: string): Promise<void>;
     runTransaction(executor: (tran: TransactionRepository<T>) => Promise<void>): Promise<void>;
     createBatch(): FirestoreBatchRepository<IEntity>;

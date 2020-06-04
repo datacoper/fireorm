@@ -10,6 +10,7 @@ export interface IRepository<T extends {
     findById(id: string): Promise<T>;
     create(item: PartialBy<T, 'id'>): Promise<T>;
     update(item: T): Promise<T>;
+    set(item: T): Promise<T>;
     delete(id: string): Promise<void>;
     getReference(id: string): DocumentReference;
 }

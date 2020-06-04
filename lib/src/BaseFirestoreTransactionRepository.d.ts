@@ -9,6 +9,7 @@ export declare class TransactionRepository<T extends IEntity> extends AbstractFi
     findById(id: string): Promise<T>;
     create(item: WithOptionalId<T>): Promise<T>;
     update(item: T): Promise<T>;
+    set(item: T): Promise<T>;
     delete(id: string): Promise<void>;
     limit(): IQueryBuilder<T>;
     orderByAscending(): IQueryBuilder<T>;
