@@ -54,6 +54,7 @@ export interface IQueryBuilder<T extends IEntity> {
     offset(offsetVal: number): IQueryBuilder<T>;
     find(): Promise<T[]>;
     findOne(): Promise<T | null>;
+    getQuery(): IQueryBuilder<T>;
 }
 export interface IQueryExecutor<T> {
     execute(queries: IFireOrmQueryLine[], limitVal?: number, offsetVal?: number, orderByObj?: IOrderByParams, single?: boolean): Promise<T[]>;

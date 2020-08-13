@@ -161,7 +161,11 @@ export default class QueryBuilder<T extends IEntity>
 
   async findOne(): Promise<T | null> {
     const queryResult = await this.executor.execute(this.queries, this.limitVal, this.offsetVal, this.orderByObj, true);
-    
+
     return queryResult.length ? queryResult[0] : null;
+  }
+
+  getQuery(){
+    return this;
   }
 }

@@ -19,4 +19,5 @@ export default class QueryBuilder<T extends IEntity> implements IQueryBuilder<T>
     orderByDescending(prop: IWherePropParam<T>): QueryBuilder<T>;
     find(): Promise<T[]>;
     findOne(): Promise<T | null>;
+    getQuery(): this;
 }

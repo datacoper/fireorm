@@ -152,6 +152,10 @@ export declare abstract class AbstractFirestoreRepository<T extends IEntity> ext
      */
     findOne(): Promise<T | null>;
     /**
+     *
+     */
+    getQuery(): IQueryBuilder<T>;
+    /**
      * Uses class-validator to validate an entity using decorators set in the collection class
      *
      * @param item class or object representing an entity
